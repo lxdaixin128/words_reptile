@@ -25,7 +25,6 @@ ip = local
 db = Client(host=ip, port=8888)
 threadLock = threading.Lock()
 total = db.qsize('words')
-# scp -i ~/.ssh/cloud /Users/mr.dong/Desktop/redis/reptile.py root@94.191.9.234:/root/reptile.py
 
 restart = '''
 ++++++++       +++++++++++     +++++++++++         +++          ++++++++        *************  
@@ -40,8 +39,6 @@ restart = '''
 +          +   +                        +    +             +    +          +          *        
 +           +  +++++++++++   ++++++++++     +               +   +           +         *   
 '''
-# 后台运行
-# nohup python3 -u reptile.py > log 2>&1 &
 
 class ProxyPool(object):
     proxy_list = []
@@ -77,14 +74,11 @@ class ProxyPool(object):
                     html = requests.get(url, proxies={"http": "http://{}".format(proxy)})
                     text = html.text if html else None
                     return text
-                except Exception as e:
-                    # print('重试： {}, {}'.format(retry_count, e))
+                except Exception:
                     retry_count -= 1
             # 出错2次, 删除代理池中代理
             self.delete_proxy(proxy)
-            # print('删除代理：', proxy)
             return None
-        # print('获取：{} , 重试：{}, 成功！！'.format(url, retry_count))
 
 
 class EtymaList(object):
@@ -203,7 +197,6 @@ class EtymaList(object):
             db.hset('phrase', en, cn)
 
     def get_word_info(self, word):
-        # print('开始抓取...', word)
         word_item = {}
         ciba_html = self.get_word_html_from_ciba(word)
         if ciba_html is not None:
