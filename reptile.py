@@ -20,8 +20,9 @@ from lxml import etree
 import requests
 import threading
 import time
+tencent = '94.191.9.234'
 local = '127.0.0.1'
-ip = local
+ip = tencent
 db = Client(host=ip, port=8888)
 threadLock = threading.Lock()
 total = db.qsize('words')
@@ -288,7 +289,7 @@ def main():
             test = EtymaList()
             print('\n', restart)
 
-        if test.proxy_pool == 0:
+        if test.len_proxy_pool == 0:
             time.sleep(60)
         for th in test.threads:
             if not th.is_alive():
@@ -299,7 +300,7 @@ def main():
         while len(test.threads) < 20:
             word = test.get_next_word()
             if word:
-                t = threading.Thread(target=test.get_word_info, args=word)
+                t = threading.Thread(target=test.get_word_info, args=(word,))
                 t.setDaemon(True)
                 t.start()
                 test.threads.append(t)
