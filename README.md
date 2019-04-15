@@ -16,7 +16,7 @@
       git@github.com:lxdaixin128/words_reptile.git
       或者直接到https://github.com/lxdaixin128/words_reptile.git 下载zip文件
 
-* [获取并安装SSDB](http://ssdb.io/zh_cn/)
+* [安装SSDB](http://ssdb.io/zh_cn/)
 
 * 恢复数据库单词队列（单词总量135120）
 
@@ -26,7 +26,7 @@
 
   
 
-* [获取并启动爬虫代理池](https://github.com/frankroad/proxy_pool)
+* [安装爬虫代理池](https://github.com/frankroad/proxy_pool)
   
 * 安装依赖:
 
